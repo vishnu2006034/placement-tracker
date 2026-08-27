@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bgGrad192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="accentGrad192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="48" fill="url(#bgGrad192)" stroke="#1e293b" stroke-width="4"/>
+  <circle cx="96" cy="90" r="54" fill="none" stroke="#334155" stroke-width="6" stroke-dasharray="8 6"/>
+  <circle cx="96" cy="90" r="34" fill="none" stroke="url(#primaryGrad192)" stroke-width="8"/>
+  <circle cx="96" cy="90" r="16" fill="url(#primaryGrad192)"/>
+  
+  <line x1="96" y1="20" x2="96" y2="40" stroke="url(#primaryGrad192)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="96" y1="140" x2="96" y2="160" stroke="url(#primaryGrad192)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="26" y1="90" x2="46" y2="90" stroke="url(#primaryGrad192)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="146" y1="90" x2="166" y2="90" stroke="url(#primaryGrad192)" stroke-width="5" stroke-linecap="round"/>
+  
+  <g transform="translate(120, 116)">
+    <circle cx="22" cy="22" r="22" fill="#030712" stroke="#334155" stroke-width="3"/>
+    <path d="M22 6 C28 14 34 22 34 29 C34 37 28 42 22 42 C16 42 10 37 10 29 C10 24 15 16 22 6 Z" fill="url(#accentGrad192)"/>
+    <path d="M22 20 C25 25 28 28 28 32 C28 36 25 39 22 39 C19 39 16 36 16 32 C16 28 19 25 22 20 Z" fill="#fde047"/>
+  </g>
+</svg>

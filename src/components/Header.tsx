@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flame, RotateCcw, Download, Upload, Target, Sparkles, CheckCircle2, ShieldAlert } from "lucide-react";
+import { Flame, RotateCcw, Download, Upload, Target, Sparkles, CheckCircle2, ShieldAlert, Smartphone } from "lucide-react";
 import { TrackerState } from "../types";
 import { exportStateAsJson, triggerConfetti } from "../utils/helpers";
 
@@ -7,9 +7,11 @@ interface HeaderProps {
   state: TrackerState;
   onReset: () => void;
   onImportState: (imported: TrackerState) => void;
+  onOpenInstallModal?: () => void;
+  isStandalone?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ state, onReset, onImportState }) => {
+export const Header: React.FC<HeaderProps> = ({ state, onReset, onImportState, onOpenInstallModal, isStandalone }) => {
   const [showImportModal, setShowImportModal] = useState(false);
   const [importJsonText, setImportJsonText] = useState("");
   const [importError, setImportError] = useState("");
@@ -74,6 +76,22 @@ export const Header: React.FC<HeaderProps> = ({ state, onReset, onImportState })
         </div>
 
         <div className="flex items-center flex-wrap gap-2 pt-1 md:pt-0">
+          {/* Mobile / App Mode Guide */}
+          {onOpenInstallModal && (
+            <button
+              onClick={onOpenInstallModal}
+              className={`px-3.5 py-2 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer shadow-sm transition-colors ${
+                isStandalone
+                  ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
+                  : "bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20"
+              }`}
+              title="Install on Phone or Learn App Mode"
+            >
+              <Smartphone className="w-3.5 h-3.5" />
+              <span>{isStandalone ? "App Installed" : "Install on Phone"}</span>
+            </button>
+          )}
+
           {/* Backup / Export */}
           <button
             onClick={() => exportStateAsJson(state)}

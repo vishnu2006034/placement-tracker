@@ -8,6 +8,16 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 1rem);
+  }
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -17,5 +27,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #030712;
   color: #cbd5e1;
+  overscroll-behavior-y: none;
 }
+
 

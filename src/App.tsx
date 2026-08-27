@@ -34,14 +34,58 @@ import { CompanyTrackerView } from "./components/CompanyTrackerView";
 import { DsaTrackerView } from "./components/DsaTrackerView";
 import { NotesScratchpadView } from "./components/NotesScratchpadView";
 import { BaselineSettingsView } from "./components/BaselineSettingsView";
+import { MobileBottomNav } from "./components/MobileBottomNav";
+import { MobileInstallModal } from "./components/MobileInstallModal";
 
 export default function App() {
   const [trackerState, setTrackerState] = useState<TrackerState>(() => loadTrackerState());
   const [activeTab, setActiveTab] = useState<TabType>("daily");
   const [currentDateStr, setCurrentDateStr] = useState<string>(getTodayString());
   const [dsaTopics, setDsaTopics] = useState(INITIAL_DSA_TOPICS);
+  const [showInstallModal, setShowInstallModal] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isStandalone, setIsStandalone] = useState(false);
 
   const currentWeekKey = useMemo(() => getCurrentWeekKey(), []);
+
+  // Listen for PWA install event & check standalone mode
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    const checkStandalone = () => {
+      const isStandaloneMode =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        (window.navigator as any).standalone ||
+        document.referrer.includes("android-app://");
+      setIsStandalone(!!isStandaloneMode);
+    };
+
+    checkStandalone();
+    window.addEventListener("resize", checkStandalone);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener("resize", checkStandalone);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        setDeferredPrompt(null);
+        setShowInstallModal(false);
+      }
+    } else {
+      setShowInstallModal(true);
+    }
+  };
 
   // Save to localStorage on state change
   useEffect(() => {
@@ -333,10 +377,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#070b12] text-slate-100 flex flex-col selection:bg-sky-500 selection:text-slate-950">
       {/* Top Bar */}
-      <Header state={trackerState} onReset={handleResetAll} onImportState={handleImportState} />
+      <Header
+        state={trackerState}
+        onReset={handleResetAll}
+        onImportState={handleImportState}
+        onOpenInstallModal={() => setShowInstallModal(true)}
+        isStandalone={isStandalone}
+      />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5 sm:py-7 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5 sm:py-7 space-y-6 pb-28 md:pb-10">
         {/* KPI Metric Overview Row */}
         <MetricCards
           metrics={trackerState.metrics}
@@ -491,8 +541,27 @@ export default function App() {
         </div>
       </main>
 
+      {/* Mobile Floating Bottom Nav */}
+      <MobileBottomNav
+        activeTab={activeTab}
+        onSelectTab={setActiveTab}
+        dailyRemainingCount={dailyRemainingCount}
+        weeklyRemainingCount={weeklyRemainingCount}
+        totalApplicationsCount={trackerState.applications.length}
+        onOpenInstallModal={() => setShowInstallModal(true)}
+      />
+
+      {/* Install App / Mobile Mode Guide Modal */}
+      <MobileInstallModal
+        isOpen={showInstallModal}
+        onClose={() => setShowInstallModal(false)}
+        deferredPrompt={deferredPrompt}
+        onInstallClick={handleInstallClick}
+        isStandalone={isStandalone}
+      />
+
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/60 py-4 px-4 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-800/80 bg-slate-950/60 py-4 px-4 text-center text-xs text-slate-500 hidden md:block">
         Placement Preparation OS • Stored locally in your browser • Ready for Campus & Off-Campus Sprints
       </footer>
     </div>
