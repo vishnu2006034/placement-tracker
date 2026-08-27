@@ -41,10 +41,13 @@ export default function App() {
   const [trackerState, setTrackerState] = useState<TrackerState>(() => loadTrackerState());
   const [activeTab, setActiveTab] = useState<TabType>("daily");
   const [currentDateStr, setCurrentDateStr] = useState<string>(getTodayString());
-  const [dsaTopics, setDsaTopics] = useState(INITIAL_DSA_TOPICS);
   const [showInstallModal, setShowInstallModal] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isStandalone, setIsStandalone] = useState(false);
+
+  const dsaTopics = useMemo(() => {
+    return trackerState.dsaTopics || INITIAL_DSA_TOPICS;
+  }, [trackerState.dsaTopics]);
 
   const currentWeekKey = useMemo(() => getCurrentWeekKey(), []);
 
@@ -311,23 +314,27 @@ export default function App() {
 
   // 6. DSA Topics & Solved
   const handleUpdateTopicSolved = (topicId: string, delta: number) => {
-    setDsaTopics((prev) =>
-      prev.map((t) => {
+    setTrackerState((prev) => {
+      const currentTopics = prev.dsaTopics || INITIAL_DSA_TOPICS;
+      let actualDelta = 0;
+      const updatedTopics = currentTopics.map((t) => {
         if (t.id === topicId) {
           const nextSolved = Math.max(0, Math.min(t.totalQuestions, t.solved + delta));
+          actualDelta = nextSolved - t.solved;
           return { ...t, solved: nextSolved };
         }
         return t;
-      })
-    );
-    // sync total metrics
-    setTrackerState((prev) => ({
-      ...prev,
-      metrics: {
-        ...prev.metrics,
-        dsaSolved: Math.max(0, prev.metrics.dsaSolved + delta),
-      },
-    }));
+      });
+
+      return {
+        ...prev,
+        dsaTopics: updatedTopics,
+        metrics: {
+          ...prev.metrics,
+          dsaSolved: Math.max(0, prev.metrics.dsaSolved + actualDelta),
+        },
+      };
+    });
   };
 
   // 7. Baselines

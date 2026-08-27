@@ -22,6 +22,11 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
   const [formStreak, setFormStreak] = useState<number>(streak);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
+  React.useEffect(() => {
+    setFormMetrics({ ...metrics });
+    setFormStreak(streak);
+  }, [metrics, streak]);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     onUpdateBaselines(formMetrics, formStreak);

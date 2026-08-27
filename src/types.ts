@@ -83,4 +83,5 @@ export interface TrackerState {
   applications: CompanyApplication[];
   starStories: StarStory[];
   quickNotes: string;
+  dsaTopics?: DsaTopic[];
 }

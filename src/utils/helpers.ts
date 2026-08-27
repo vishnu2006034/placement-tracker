@@ -1,13 +1,18 @@
 import confetti from "canvas-confetti";
 import { TrackerState } from "../types";
-import { INITIAL_STATE } from "../data/initialData";
+import { INITIAL_STATE, INITIAL_DSA_TOPICS } from "../data/initialData";
 
-export const STORAGE_KEY = "placement_os_pro_v2";
+export const STORAGE_KEY = "placement_os_fresh_v3";
 
 export function loadTrackerState(): TrackerState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return INITIAL_STATE;
+    if (!raw) {
+      // Clear any legacy keys with old mock numbers
+      localStorage.removeItem("placement_os_pro_v2");
+      localStorage.removeItem("placement_os_pro_v1");
+      return INITIAL_STATE;
+    }
     const parsed = JSON.parse(raw);
     return {
       ...INITIAL_STATE,
@@ -25,11 +30,12 @@ export function loadTrackerState(): TrackerState {
       customDailyHabits: parsed.customDailyHabits || [],
       weeklyStatus: parsed.weeklyStatus || {},
       customWeeklyTargets: parsed.customWeeklyTargets || [],
-      streak: typeof parsed.streak === "number" ? parsed.streak : INITIAL_STATE.streak,
+      streak: typeof parsed.streak === "number" ? parsed.streak : 0,
       lastCompletedDate: parsed.lastCompletedDate || "",
-      streakHistory: Array.isArray(parsed.streakHistory) ? parsed.streakHistory : INITIAL_STATE.streakHistory,
-      applications: Array.isArray(parsed.applications) ? parsed.applications : INITIAL_STATE.applications,
-      starStories: Array.isArray(parsed.starStories) ? parsed.starStories : INITIAL_STATE.starStories,
+      streakHistory: Array.isArray(parsed.streakHistory) ? parsed.streakHistory : [],
+      applications: Array.isArray(parsed.applications) ? parsed.applications : [],
+      starStories: Array.isArray(parsed.starStories) ? parsed.starStories : [],
+      dsaTopics: Array.isArray(parsed.dsaTopics) ? parsed.dsaTopics : INITIAL_DSA_TOPICS,
       quickNotes: typeof parsed.quickNotes === "string" ? parsed.quickNotes : INITIAL_STATE.quickNotes,
     };
   } catch (err) {

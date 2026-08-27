@@ -102,105 +102,45 @@ export const INITIAL_WEEKLY_TARGETS: WeeklyTarget[] = [
 ];
 
 export const INITIAL_DSA_TOPICS: DsaTopic[] = [
-  { id: "arr_str", name: "Arrays & Strings", totalQuestions: 30, solved: 18, keyConcepts: ["Two Pointers", "Sliding Window", "Kadane's", "Prefix Sum"] },
-  { id: "hash", name: "Hashing & Maps", totalQuestions: 15, solved: 10, keyConcepts: ["Frequency Counter", "Subarray Sum Equals K", "Longest Consecutive Sequence"] },
-  { id: "linked_list", name: "Linked List", totalQuestions: 18, solved: 12, keyConcepts: ["Fast & Slow Pointers", "Reverse Linked List", "Merge K Lists", "Cycle Detection"] },
-  { id: "stack_queue", name: "Stack & Queue", totalQuestions: 20, solved: 9, keyConcepts: ["Monotonic Stack", "Next Greater Element", "Valid Parentheses", "LRU Cache"] },
-  { id: "trees", name: "Trees & BST", totalQuestions: 30, solved: 14, keyConcepts: ["BFS/DFS Traversals", "LCA", "Diameter", "Max Path Sum", "Validate BST"] },
-  { id: "graphs", name: "Graphs", totalQuestions: 25, solved: 8, keyConcepts: ["BFS/DFS", "Dijkstra", "Topological Sort", "Disjoint Set (Union-Find)", "Cycle Detection"] },
-  { id: "dp", name: "Dynamic Programming", totalQuestions: 35, solved: 7, keyConcepts: ["0/1 Knapsack", "LCS & LIS", "Matrix Chain", "Grid DP", "DP with Bitmask"] },
-  { id: "sql_db", name: "SQL & DB Queries", totalQuestions: 20, solved: 12, keyConcepts: ["Joins", "Window Functions (RANK, DENSE_RANK)", "Self Joins", "Aggregation"] },
+  { id: "arr_str", name: "Arrays & Strings", totalQuestions: 30, solved: 0, keyConcepts: ["Two Pointers", "Sliding Window", "Kadane's", "Prefix Sum"] },
+  { id: "hash", name: "Hashing & Maps", totalQuestions: 15, solved: 0, keyConcepts: ["Frequency Counter", "Subarray Sum Equals K", "Longest Consecutive Sequence"] },
+  { id: "linked_list", name: "Linked List", totalQuestions: 18, solved: 0, keyConcepts: ["Fast & Slow Pointers", "Reverse Linked List", "Merge K Lists", "Cycle Detection"] },
+  { id: "stack_queue", name: "Stack & Queue", totalQuestions: 20, solved: 0, keyConcepts: ["Monotonic Stack", "Next Greater Element", "Valid Parentheses", "LRU Cache"] },
+  { id: "trees", name: "Trees & BST", totalQuestions: 30, solved: 0, keyConcepts: ["BFS/DFS Traversals", "LCA", "Diameter", "Max Path Sum", "Validate BST"] },
+  { id: "graphs", name: "Graphs", totalQuestions: 25, solved: 0, keyConcepts: ["BFS/DFS", "Dijkstra", "Topological Sort", "Disjoint Set (Union-Find)", "Cycle Detection"] },
+  { id: "dp", name: "Dynamic Programming", totalQuestions: 35, solved: 0, keyConcepts: ["0/1 Knapsack", "LCS & LIS", "Matrix Chain", "Grid DP", "DP with Bitmask"] },
+  { id: "sql_db", name: "SQL & DB Queries", totalQuestions: 20, solved: 0, keyConcepts: ["Joins", "Window Functions (RANK, DENSE_RANK)", "Self Joins", "Aggregation"] },
 ];
 
-export const INITIAL_STAR_STORIES: StarStory[] = [
-  {
-    id: "s1",
-    title: "Handling a production bottleneck / Critical bug fix",
-    situation: "During our final semester full-stack project deployment, API response times spiked above 3.5 seconds under concurrent load.",
-    task: "I was responsible for profiling the backend endpoints and reducing latency below 200ms before our live demo.",
-    action: "Used database query explain plans to identify unindexed N+1 queries. Added composite indexes, integrated Redis in-memory caching for read-heavy routes, and debounced search triggers.",
-    result: "Reduced average API latency from 3500ms down to 85ms (97% reduction) and handled 500 simultaneous test users without timeouts.",
-    skills: "Performance Profiling, Redis, Database Indexing, System Optimization"
-  },
-  {
-    id: "s2",
-    title: "Leading team through conflicting technical opinions",
-    situation: "Our 4-person hackathon team disagreed on whether to use a microservices architecture vs a modular monolith under a 36-hour deadline.",
-    task: "As team coordinator, I needed to resolve the technical deadlock quickly without alienating teammates.",
-    action: "Set up a 15-minute matrix evaluating our time constraints against delivery requirements. Proposed starting with a modular monolith with clear domain boundaries, and creating one standalone service only for AI inference.",
-    result: "Shipped the complete MVP 4 hours before deadline, won 2nd place in the track, and avoided distributed debugging overhead.",
-    skills: "Leadership, Conflict Resolution, Architectural Pragmatism"
-  }
-];
+export const INITIAL_STAR_STORIES: StarStory[] = [];
 
-export const INITIAL_COMPANIES: import("../types").CompanyApplication[] = [
-  {
-    id: "c1",
-    company: "Goldman Sachs",
-    role: "Summer Analyst / SDE",
-    tier: "Tier 1 (Dream)",
-    status: "OA Round",
-    appliedDate: "2026-08-15",
-    packageLPA: "24-28",
-    notes: "Aptitude + 2 Medium DSA problems in HackerRank. Focus on Math and Graph algorithms.",
-    jobLink: "https://goldmansachs.com/careers"
-  },
-  {
-    id: "c2",
-    company: "TCS Digital / Prime",
-    role: "Systems Engineer (Digital)",
-    tier: "Tier 2 (Core)",
-    status: "Applied",
-    appliedDate: "2026-08-20",
-    packageLPA: "7.5-9",
-    notes: "NQT exam scheduled soon. Verbal, Numerical, Advanced Coding in Python/C++.",
-    jobLink: ""
-  },
-  {
-    id: "c3",
-    company: "Razorpay",
-    role: "Backend Engineer Intern",
-    tier: "Tier 1 (Dream)",
-    status: "Tech Round 1",
-    appliedDate: "2026-08-10",
-    packageLPA: "22",
-    notes: "Completed take-home assignment on distributed rate limiter. Live system design and API round scheduled.",
-    jobLink: "https://razorpay.com"
-  }
-];
+export const INITIAL_COMPANIES: import("../types").CompanyApplication[] = [];
 
 export const INITIAL_STATE: TrackerState = {
-  version: 2,
+  version: 3,
   metrics: {
-    dsaSolved: 83,
+    dsaSolved: 0,
     dsaGoal: 180,
-    appsThisWeek: 4,
+    appsThisWeek: 0,
     appsWeekGoal: 15,
-    totalApps: 18,
-    mocksDone: 2,
+    totalApps: 0,
+    mocksDone: 0,
     mocksGoal: 10,
-    cgpa: "8.75",
-    targetRole: "Full Stack / SDE Intern"
+    cgpa: "",
+    targetRole: ""
   },
-  checkedRoadmap: {
-    "p0-t0_1": true,
-    "p0-t0_2": true,
-    "p0-t0_3": true,
-    "p1-t1_1": true,
-    "p1-t1_2": true,
-    "p2-t2_1": true,
-    "p2-t2_2": true,
-  },
+  checkedRoadmap: {},
   customRoadmapTasks: {},
   dailyStatus: {},
   customDailyHabits: [],
   weeklyStatus: {},
   customWeeklyTargets: [],
-  streak: 4,
+  streak: 0,
   lastCompletedDate: "",
-  streakHistory: ["2026-08-24", "2026-08-25", "2026-08-26"],
-  applications: INITIAL_COMPANIES,
-  starStories: INITIAL_STAR_STORIES,
+  streakHistory: [],
+  applications: [],
+  starStories: [],
+  dsaTopics: INITIAL_DSA_TOPICS,
   quickNotes: `## Quick Interview Formulas & Revision Notes
 
 ### Time Complexities Cheat Sheet
@@ -216,5 +156,5 @@ export const INITIAL_STATE: TrackerState = {
 - Window functions: \`ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC)\`
 
 ### 30-Second Elevator Pitch
-"Hi! I'm a final-year CS undergrad passionate about scalable backend systems and responsive web applications. Recently built a distributed workflow engine that handled 500+ simulated concurrent requests, and I love digging into algorithms and high-throughput systems."`
+"Hi! I'm an engineering student passionate about software development and problem solving. I love building practical projects and practicing data structures & algorithms."`
 };

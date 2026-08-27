@@ -2,5 +2,7 @@
   "name": "Placement Preparation Tracker",
   "description": "Comprehensive placement preparation tracker for college students with milestone roadmaps, daily routine habits, weekly sprints, and customizable progress baselines.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

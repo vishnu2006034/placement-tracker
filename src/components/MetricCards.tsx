@@ -37,7 +37,7 @@ export const MetricCards: React.FC<MetricCardsProps> = ({
           <div className="flex items-baseline justify-between gap-2 mt-1">
             <div className="flex items-baseline gap-2">
               <span className="text-3xl sm:text-4xl font-black text-white tabular-nums">
-                {metrics.dsaSolved < 10 && metrics.dsaSolved >= 0 ? `0${metrics.dsaSolved}` : metrics.dsaSolved}
+                {metrics.dsaSolved}
               </span>
               <span className="text-slate-500 font-medium text-xs sm:text-sm">/ {metrics.dsaGoal} Problems</span>
             </div>
