@@ -60,7 +60,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
   return (
     <div className="space-y-4">
       {/* Roadmap Controls Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             <Layers className="w-4 h-4 text-sky-400" />
@@ -74,13 +74,13 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={expandAll}
-            className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-colors cursor-pointer"
           >
             Expand All
           </button>
           <button
             onClick={collapseAll}
-            className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-colors cursor-pointer"
           >
             Collapse All
           </button>
@@ -100,32 +100,32 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
               key={phase.id}
               className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                 isComplete
-                  ? "bg-slate-900/90 border-emerald-500/30"
-                  : "bg-slate-900 border-slate-800 hover:border-slate-700"
+                  ? "bg-slate-900/40 border-emerald-500/30"
+                  : "bg-slate-900/50 border-slate-800 hover:border-slate-700"
               }`}
             >
               {/* Phase Header Button */}
               <button
                 onClick={() => togglePhaseOpen(phase.id)}
-                className="w-full flex items-center justify-between p-4 sm:p-4.5 text-left bg-transparent transition-colors cursor-pointer hover:bg-slate-800/40"
+                className="w-full flex items-center justify-between p-4 sm:p-5 text-left bg-transparent transition-colors cursor-pointer hover:bg-slate-800/40"
               >
                 <div className="flex items-center gap-3 min-w-0 mr-3">
-                  <span className="flex-shrink-0 text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60">
+                  <span className="flex-shrink-0 text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800 uppercase tracking-wider">
                     P{idx}
                   </span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm sm:text-base font-semibold text-slate-100 truncate">
+                      <span className="text-sm sm:text-base font-bold text-white truncate">
                         {phase.title}
                       </span>
                       {isComplete && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
                           Cleared
                         </span>
                       )}
                     </div>
                     {phase.subtitle && (
-                      <p className="text-xs text-slate-400 truncate mt-0.5">
+                      <p className="text-xs text-slate-500 truncate mt-0.5">
                         {phase.subtitle}
                       </p>
                     )}
@@ -140,7 +140,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                   >
                     {doneTasksCount}/{phase.tasks.length} ({pct}%)
                   </span>
-                  <div className="p-1 rounded-md bg-slate-800 text-slate-400">
+                  <div className="p-1 rounded-md bg-slate-950 text-slate-400 border border-slate-800">
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
                         isOpen ? "transform rotate-180 text-sky-400" : ""
@@ -151,7 +151,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
               </button>
 
               {/* Thin Progress bar */}
-              <div className="w-full bg-slate-950 h-1 overflow-hidden">
+              <div className="w-full bg-slate-800 h-1 overflow-hidden">
                 <div
                   className={`h-full transition-all duration-300 ${
                     isComplete ? "bg-emerald-400" : "bg-amber-400"
@@ -162,7 +162,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
 
               {/* Task Items inside Phase */}
               {isOpen && (
-                <div className="p-3.5 sm:p-4 space-y-2 border-t border-slate-800/80 bg-slate-950/30">
+                <div className="p-4 sm:p-5 space-y-2 border-t border-slate-800/80 bg-slate-950/20">
                   {phase.tasks.map((task) => {
                     const key = `${phase.id}-${task.id}`;
                     const isDone = !!checkedRoadmap[key];
@@ -176,25 +176,25 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                             triggerConfetti();
                           }
                         }}
-                        className={`group flex items-start justify-between p-3 rounded-xl border transition-all cursor-pointer select-none ${
+                        className={`group flex items-start justify-between p-3.5 rounded-xl border transition-all cursor-pointer select-none ${
                           isDone
-                            ? "bg-slate-900/30 border-slate-800/40 opacity-75"
-                            : "bg-slate-900/80 border-slate-800/90 hover:border-slate-700 hover:bg-slate-850"
+                            ? "bg-emerald-500/5 border-emerald-500/10 opacity-85"
+                            : "bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/60"
                         }`}
                       >
                         <div className="flex items-start gap-3 flex-1 min-w-0 mr-2">
                           <div
-                            className={`mt-0.5 w-4.5 h-4.5 rounded-md border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            className={`mt-0.5 w-4.5 h-4.5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
                               isDone
                                 ? "bg-emerald-500 border-emerald-500 text-slate-950"
-                                : "border-slate-600 bg-slate-950/80 group-hover:border-slate-400"
+                                : "border-slate-700 bg-slate-950/80 group-hover:border-slate-500"
                             }`}
                           >
                             {isDone && <Check className="w-3 h-3 stroke-[3]" />}
                           </div>
                           <span
                             className={`text-xs sm:text-sm leading-relaxed transition-colors ${
-                              isDone ? "line-through text-slate-400" : "text-slate-200"
+                              isDone ? "line-through text-slate-500" : "text-slate-300"
                             }`}
                           >
                             {task.text}
@@ -223,7 +223,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                   <div className="pt-2 flex justify-end">
                     <button
                       onClick={() => setModalPhaseId(phase.id)}
-                      className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg text-sky-400 hover:text-sky-300 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/20 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg text-sky-400 hover:text-sky-300 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/20 transition-colors cursor-pointer"
                     >
                       <Plus className="w-3 h-3" />
                       <span>Add item to {phase.title.split(":")[0]}</span>
@@ -279,7 +279,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
               <button
                 type="submit"
                 disabled={!newTaskText.trim()}
-                className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 disabled:opacity-40"
+                className="px-4 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 disabled:opacity-40"
               >
                 Add Task
               </button>

@@ -33,7 +33,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-1">
           <Settings2 className="w-5 h-5 text-sky-400" />
           <h2 className="text-lg font-bold text-white">Starting Baselines & Progress Setup</h2>
@@ -44,7 +44,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
       </div>
 
       {/* Baseline Form */}
-      <form onSubmit={handleSave} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-6">
+      <form onSubmit={handleSave} className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {/* Target Role */}
           <div className="space-y-1.5">
@@ -54,7 +54,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               value={formMetrics.targetRole || ""}
               onChange={(e) => setFormMetrics({ ...formMetrics, targetRole: e.target.value })}
               placeholder="e.g. SDE-1 / Backend Engineer"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -66,7 +66,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               value={formMetrics.cgpa || ""}
               onChange={(e) => setFormMetrics({ ...formMetrics, cgpa: e.target.value })}
               placeholder="e.g. 8.75 / 85%"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -78,7 +78,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={0}
               value={formStreak}
               onChange={(e) => setFormStreak(Number(e.target.value) || 0)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-amber-400 font-bold focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-amber-400 font-bold focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -90,7 +90,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={0}
               value={formMetrics.dsaSolved}
               onChange={(e) => setFormMetrics({ ...formMetrics, dsaSolved: Number(e.target.value) || 0 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-emerald-400 font-bold focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-emerald-400 font-bold focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -102,7 +102,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={1}
               value={formMetrics.dsaGoal}
               onChange={(e) => setFormMetrics({ ...formMetrics, dsaGoal: Number(e.target.value) || 1 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -114,7 +114,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={0}
               value={formMetrics.totalApps}
               onChange={(e) => setFormMetrics({ ...formMetrics, totalApps: Number(e.target.value) || 0 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-amber-400 font-bold focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-amber-400 font-bold focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -126,7 +126,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={1}
               value={formMetrics.appsWeekGoal}
               onChange={(e) => setFormMetrics({ ...formMetrics, appsWeekGoal: Number(e.target.value) || 1 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -138,7 +138,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={0}
               value={formMetrics.mocksDone}
               onChange={(e) => setFormMetrics({ ...formMetrics, mocksDone: Number(e.target.value) || 0 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-purple-400 font-bold focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-purple-400 font-bold focus:outline-none focus:border-sky-500"
             />
           </div>
 
@@ -150,7 +150,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
               min={1}
               value={formMetrics.mocksGoal}
               onChange={(e) => setFormMetrics({ ...formMetrics, mocksGoal: Number(e.target.value) || 1 })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500"
             />
           </div>
         </div>
@@ -168,7 +168,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
 
           <button
             type="submit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors shadow-lg cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-sky-600 border border-sky-500 hover:bg-sky-500 text-white transition-colors shadow-lg cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Save Baselines</span>
@@ -177,7 +177,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
       </form>
 
       {/* Backup & Reset Utilities */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+      <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
         <h3 className="text-sm font-bold text-white flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-400" /> Data Safety & Multi-Device Sync
         </h3>
@@ -189,7 +189,7 @@ export const BaselineSettingsView: React.FC<BaselineSettingsViewProps> = ({
           <button
             type="button"
             onClick={() => exportStateAsJson(fullState)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" /> Download JSON Backup
           </button>

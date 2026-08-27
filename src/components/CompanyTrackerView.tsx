@@ -95,7 +95,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
   return (
     <div className="space-y-5">
       {/* Header with Search and Filters */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+      <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
@@ -109,7 +109,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors cursor-pointer shadow-sm self-start sm:self-auto"
+            className="px-3.5 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm self-start sm:self-auto"
           >
             <Plus className="w-4 h-4" />
             <span>Add Application</span>
@@ -161,7 +161,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
 
       {/* Applications Cards Grid */}
       {filteredApps.length === 0 ? (
-        <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-10 text-center space-y-2">
+        <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-10 text-center space-y-2">
           <Building2 className="w-8 h-8 text-slate-600 mx-auto" />
           <p className="text-sm font-medium text-slate-300">No applications match your filter</p>
           <p className="text-xs text-slate-500">
@@ -169,7 +169,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredApps.map((app) => {
             const statusStyle = STATUS_COLORS[app.status];
             const tierStyle = TIER_BADGES[app.tier] || "bg-slate-800 text-slate-400";
@@ -177,7 +177,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
             return (
               <div
                 key={app.id}
-                className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-700 transition-all shadow-sm space-y-3"
+                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-all shadow-sm space-y-3"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2">
@@ -199,13 +199,13 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
                       <p className="text-xs text-slate-400 font-medium">{app.role}</p>
                     </div>
 
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${tierStyle}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${tierStyle}`}>
                       {app.tier.split(" ")[0]}
                     </span>
                   </div>
 
                   {/* Details Badges */}
-                  <div className="flex flex-wrap items-center gap-2 mt-2 text-xs text-slate-400">
+                  <div className="flex flex-wrap items-center gap-2 mt-2.5 text-xs text-slate-400">
                     <span className="flex items-center gap-1 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
                       <Calendar className="w-3 h-3 text-slate-500" />
                       {app.appliedDate}
@@ -219,14 +219,14 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
                   </div>
 
                   {app.notes && (
-                    <p className="text-xs text-slate-300 bg-slate-950/60 border border-slate-800/80 p-2 rounded-lg mt-2.5 line-clamp-2">
+                    <p className="text-xs text-slate-300 bg-slate-950/40 border border-slate-800 p-2.5 rounded-lg mt-3 line-clamp-2">
                       {app.notes}
                     </p>
                   )}
                 </div>
 
                 {/* Bottom Row: Status Selector & Actions */}
-                <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
+                <div className="flex items-center justify-between gap-2 pt-3 border-t border-slate-800/80">
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] text-slate-500 font-medium">Status:</span>
                     <select
@@ -236,7 +236,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
                         onUpdateStatus(app.id, newStatus);
                         if (newStatus === "Offered") triggerConfetti();
                       }}
-                      className={`text-xs font-semibold px-2.5 py-1 rounded-lg border focus:outline-none cursor-pointer ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border}`}
+                      className={`text-xs font-bold px-2.5 py-1 rounded-lg border focus:outline-none cursor-pointer uppercase tracking-wider ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border}`}
                     >
                       <option value="Applied">Applied</option>
                       <option value="OA Round">OA Round</option>
@@ -254,7 +254,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
                         onDeleteApplication(app.id);
                       }
                     }}
-                    className="p-1 text-slate-500 hover:text-rose-400 rounded transition-colors"
+                    className="p-1.5 text-slate-500 hover:text-rose-400 rounded transition-colors"
                     title="Delete Application"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -400,7 +400,7 @@ export const CompanyTrackerView: React.FC<CompanyTrackerViewProps> = ({
               <button
                 type="submit"
                 disabled={!formData.company?.trim()}
-                className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 disabled:opacity-40"
+                className="px-4 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 disabled:opacity-40"
               >
                 Save Application
               </button>

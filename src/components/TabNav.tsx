@@ -62,7 +62,7 @@ export const TabNav: React.FC<TabNavProps> = ({
   ];
 
   return (
-    <nav className="flex items-center gap-1.5 overflow-x-auto pb-1 my-5 no-scrollbar scroll-smooth">
+    <nav className="flex items-center gap-2 overflow-x-auto pb-1 my-6 no-scrollbar scroll-smooth">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -70,16 +70,16 @@ export const TabNav: React.FC<TabNavProps> = ({
           <button
             key={tab.id}
             onClick={() => onSelectTab(tab.id)}
-            className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all cursor-pointer border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer border ${
               isActive
-                ? "bg-slate-800 text-white border-slate-700 shadow-sm ring-1 ring-sky-500/30"
-                : "bg-slate-900/60 text-slate-400 border-slate-800/80 hover:bg-slate-800/70 hover:text-slate-200"
+                ? "bg-slate-900 text-white border-slate-700 shadow-sm ring-1 ring-sky-500/40"
+                : "bg-slate-950/40 text-slate-400 border-slate-800/80 hover:bg-slate-900/70 hover:text-slate-200"
             }`}
           >
             <Icon className={`w-4 h-4 ${isActive ? "text-sky-400" : "text-slate-500"}`} />
             <span>{tab.label}</span>
             {tab.badge && (
-              <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${tab.badgeColor}`}>
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${tab.badgeColor}`}>
                 {tab.badge}
               </span>
             )}

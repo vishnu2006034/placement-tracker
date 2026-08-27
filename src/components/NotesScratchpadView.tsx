@@ -70,7 +70,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
   return (
     <div className="space-y-5">
       {/* Sub-tab switcher */}
-      <div className="flex items-center justify-between bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-sky-400" />
@@ -81,11 +81,11 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800">
+        <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800">
           <button
             onClick={() => setActiveSubTab("star")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeSubTab === "star" ? "bg-slate-800 text-white" : "text-slate-400 hover:text-slate-200"
+              activeSubTab === "star" ? "bg-slate-800 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
             }`}
           >
             STAR Stories ({starStories.length})
@@ -93,7 +93,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
           <button
             onClick={() => setActiveSubTab("notes")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeSubTab === "notes" ? "bg-slate-800 text-white" : "text-slate-400 hover:text-slate-200"
+              activeSubTab === "notes" ? "bg-slate-800 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
             }`}
           >
             Formulas & Notes
@@ -107,7 +107,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
           <div className="flex justify-end">
             <button
               onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors cursor-pointer shadow-sm"
+              className="px-3.5 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Add STAR Story</span>
@@ -118,7 +118,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
             {starStories.map((story) => (
               <div
                 key={story.id}
-                className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-sm space-y-3"
+                className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4"
               >
                 <div className="flex items-start justify-between gap-3 border-b border-slate-800/80 pb-3">
                   <div>
@@ -127,11 +127,11 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
                       {story.title}
                     </h3>
                     {story.skills && (
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      <div className="flex flex-wrap gap-1.5 mt-2">
                         {story.skills.split(",").map((sk, idx) => (
                           <span
                             key={idx}
-                            className="text-[10px] font-medium px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20"
+                            className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20"
                           >
                             {sk.trim()}
                           </span>
@@ -146,7 +146,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
                         onDeleteStarStory(story.id);
                       }
                     }}
-                    className="p-1 text-slate-500 hover:text-rose-400 transition-colors"
+                    className="p-1.5 text-slate-500 hover:text-rose-400 transition-colors"
                     title="Delete story"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -154,23 +154,23 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs leading-relaxed">
-                  <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                    <span className="font-bold text-sky-400 block mb-1">S - Situation:</span>
+                  <div className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800">
+                    <span className="font-bold text-sky-400 block mb-1">S — Situation:</span>
                     <p className="text-slate-300">{story.situation || "—"}</p>
                   </div>
 
-                  <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                    <span className="font-bold text-amber-400 block mb-1">T - Task:</span>
+                  <div className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800">
+                    <span className="font-bold text-amber-400 block mb-1">T — Task:</span>
                     <p className="text-slate-300">{story.task || "—"}</p>
                   </div>
 
-                  <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 sm:col-span-2">
-                    <span className="font-bold text-emerald-400 block mb-1">A - Action (Technical Steps):</span>
+                  <div className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 sm:col-span-2">
+                    <span className="font-bold text-emerald-400 block mb-1">A — Action (Technical Steps):</span>
                     <p className="text-slate-300">{story.action || "—"}</p>
                   </div>
 
-                  <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 sm:col-span-2">
-                    <span className="font-bold text-purple-400 block mb-1">R - Result & Metrics:</span>
+                  <div className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 sm:col-span-2">
+                    <span className="font-bold text-purple-400 block mb-1">R — Result & Metrics:</span>
                     <p className="text-slate-300">{story.result || "—"}</p>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
 
       {/* 2. Quick Notes Tab */}
       {activeSubTab === "notes" && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <Edit3 className="w-4 h-4 text-sky-400" /> Formulas & CS Revision Scratchpad
@@ -190,7 +190,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
 
             <button
               onClick={handleSaveNotes}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors cursor-pointer shadow-sm"
+              className="px-3.5 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <Save className="w-3.5 h-3.5" />
               <span>Save Notes</span>
@@ -202,11 +202,11 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
             value={notesContent}
             onChange={(e) => setNotesContent(e.target.value)}
             placeholder="Type formulas, elevator pitch, tricky SQL queries, or interview bookmarks..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-xs sm:text-sm text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-sky-500"
+            className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs sm:text-sm text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-sky-500"
           />
 
           {savedNotesSuccess && (
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 animate-in fade-in duration-150">
+            <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 animate-in fade-in duration-150">
               <CheckCircle2 className="w-4 h-4" />
               Notes saved successfully!
             </div>
@@ -324,7 +324,7 @@ export const NotesScratchpadView: React.FC<NotesScratchpadViewProps> = ({
               <button
                 type="submit"
                 disabled={!starForm.title?.trim()}
-                className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 disabled:opacity-40"
+                className="px-4 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 disabled:opacity-40"
               >
                 Save STAR Story
               </button>

@@ -74,7 +74,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
   return (
     <div className="space-y-5">
       {/* Daily Header with Streak Progress & Mini Calendar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
           <div>
             <div className="flex items-center gap-2 mb-1">
@@ -82,7 +82,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
                 <CalendarIcon className="w-4 h-4 text-sky-400" />
                 Daily Sprint Routine
               </h2>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-slate-500 font-medium">
                 ({new Date(currentDateStr).toLocaleDateString("en-US", { month: "short", day: "numeric", weekday: "short" })})
               </span>
             </div>
@@ -92,16 +92,16 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+            <div className="flex items-center gap-2 bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
               <span className="text-xs font-semibold text-slate-300">
                 {doneCount} of {totalCount} Done
               </span>
               <span
-                className={`text-xs font-bold px-2 py-0.5 rounded-md ${
+                className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${
                   pct === 100
-                    ? "bg-emerald-500/20 text-emerald-300"
+                    ? "bg-emerald-500/20 text-emerald-400"
                     : isStreakEligible
-                    ? "bg-amber-500/20 text-amber-300"
+                    ? "bg-amber-500/20 text-amber-400"
                     : "bg-slate-800 text-slate-400"
                 }`}
               >
@@ -111,7 +111,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
 
             <button
               onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors cursor-pointer shadow-sm"
+              className="px-3.5 py-1.5 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Habit</span>
@@ -120,10 +120,10 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
         </div>
 
         {/* 7-Day Streak Timeline */}
-        <div className="pt-3.5 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        <div className="pt-4 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="text-xs font-medium text-slate-400 flex items-center gap-1 mr-1">
-              <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1 mr-1">
+              <Flame className="w-3.5 h-3.5 text-orange-400 fill-orange-400" />
               Recent:
             </span>
             {last7Days.map((d) => (
@@ -140,7 +140,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
                 <span className="text-[10px] text-slate-400 font-medium">{d.dayName}</span>
                 <span
                   className={`w-2.5 h-2.5 rounded-full mt-1 ${
-                    d.isCompleted ? "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" : "bg-slate-700"
+                    d.isCompleted ? "bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.8)]" : "bg-slate-700"
                   }`}
                 />
               </button>
@@ -175,23 +175,23 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
               }}
               className={`group flex items-center justify-between p-3.5 sm:p-4 rounded-xl border transition-all cursor-pointer select-none ${
                 isDone
-                  ? "bg-slate-900/40 border-slate-800/60 opacity-80"
-                  : "bg-slate-900 border-slate-800 hover:border-slate-700 hover:bg-slate-850"
+                  ? "bg-emerald-500/5 border-emerald-500/10 opacity-85"
+                  : "bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/60"
               }`}
             >
               <div className="flex items-center gap-3.5 flex-1 min-w-0 mr-2">
                 <div
-                  className={`w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-colors ${
+                  className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
                     isDone
                       ? "bg-emerald-500 border-emerald-500 text-slate-950"
-                      : "border-slate-600 bg-slate-950/80 group-hover:border-slate-400"
+                      : "border-slate-700 bg-slate-950/80 group-hover:border-slate-500"
                   }`}
                 >
                   {isDone && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                 </div>
                 <span
                   className={`text-sm font-medium transition-colors break-words ${
-                    isDone ? "line-through text-slate-400" : "text-slate-200"
+                    isDone ? "line-through text-slate-500" : "text-slate-300"
                   }`}
                 >
                   {habit.label}
@@ -200,7 +200,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
 
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span
-                  className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${catStyle.bg} ${catStyle.text} ${catStyle.border}`}
+                  className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${catStyle.bg} ${catStyle.text} ${catStyle.border}`}
                 >
                   {habit.category}
                 </span>
@@ -226,8 +226,8 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
 
       {/* Streak celebration note */}
       {isStreakEligible && (
-        <div className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs animate-in fade-in duration-200">
-          <Sparkles className="w-4 h-4 text-amber-400 flex-shrink-0" />
+        <div className="flex items-center gap-3 p-4 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs animate-in fade-in duration-200">
+          <Sparkles className="w-4 h-4 text-orange-400 flex-shrink-0" />
           <span>
             <strong>Streak requirement met!</strong> You have cleared 3+ daily habits today. Keep this daily momentum going!
           </span>
@@ -293,7 +293,7 @@ export const DailySprintView: React.FC<DailySprintViewProps> = ({
               <button
                 type="submit"
                 disabled={!newLabel.trim()}
-                className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 disabled:opacity-40"
+                className="px-4 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 disabled:opacity-40"
               >
                 Save Habit
               </button>

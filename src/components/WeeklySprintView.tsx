@@ -45,7 +45,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
   return (
     <div className="space-y-5">
       {/* Weekly Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
           <div>
             <div className="flex items-center gap-2 mb-1">
@@ -53,7 +53,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
                 <CheckSquare className="w-4 h-4 text-sky-400" />
                 Weekly Sprint Deliverables
               </h2>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase tracking-wider">
                 {currentWeekKey}
               </span>
             </div>
@@ -69,7 +69,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
                   onResetWeeklyStatus();
                 }
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-slate-400 hover:text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors"
+              className="px-3.5 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs font-semibold hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
               title="Reset current week checkboxes"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -78,7 +78,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
 
             <button
               onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition-colors cursor-pointer shadow-sm"
+              className="px-3.5 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Goal</span>
@@ -94,7 +94,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
             </span>
             <span className="font-bold text-sky-400">{pct}%</span>
           </div>
-          <div className="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-800">
+          <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
             <div
               className="h-full bg-sky-500 rounded-full transition-all duration-300"
               style={{ width: `${pct}%` }}
@@ -119,23 +119,23 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
               }}
               className={`group flex items-center justify-between p-3.5 sm:p-4 rounded-xl border transition-all cursor-pointer select-none ${
                 isDone
-                  ? "bg-slate-900/40 border-slate-800/60 opacity-80"
-                  : "bg-slate-900 border-slate-800 hover:border-slate-700 hover:bg-slate-850"
+                  ? "bg-emerald-500/5 border-emerald-500/10 opacity-85"
+                  : "bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/60"
               }`}
             >
               <div className="flex items-center gap-3.5 flex-1 min-w-0 mr-2">
                 <div
-                  className={`w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-colors ${
+                  className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
                     isDone
                       ? "bg-sky-500 border-sky-500 text-slate-950"
-                      : "border-slate-600 bg-slate-950/80 group-hover:border-slate-400"
+                      : "border-slate-700 bg-slate-950/80 group-hover:border-slate-500"
                   }`}
                 >
                   {isDone && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                 </div>
                 <span
                   className={`text-sm font-medium transition-colors break-words ${
-                    isDone ? "line-through text-slate-400" : "text-slate-200"
+                    isDone ? "line-through text-slate-500" : "text-slate-300"
                   }`}
                 >
                   {target.label}
@@ -162,7 +162,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
       </div>
 
       {pct === 100 && totalCount > 0 && (
-        <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs animate-in fade-in duration-200">
+        <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs animate-in fade-in duration-200">
           <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0" />
           <span>
             <strong>Sprint Cleared!</strong> Outstanding work finishing all weekly goals. Take Sunday to rest and plan next week!
@@ -213,7 +213,7 @@ export const WeeklySprintView: React.FC<WeeklySprintViewProps> = ({
               <button
                 type="submit"
                 disabled={!newLabel.trim()}
-                className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 disabled:opacity-40"
+                className="px-4 py-2 bg-sky-600 border border-sky-500 rounded-lg text-xs font-bold text-white hover:bg-sky-500 disabled:opacity-40"
               >
                 Save Goal
               </button>
